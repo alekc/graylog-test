@@ -1,0 +1,20 @@
+os: linux
+dist: trusty
+language: java
+jdk:
+  - oraclejdk8
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.yarn
+before_script:
+  - sudo sysctl -w vm.max_map_count=262144
+script:
+  - wget https://github.com/Graylog2/graylog-project-cli/releases/download/0.23.0/graylog-project.linux
+  - chmod +x graylog-project.linux
+  - ./graylog-project.linux bootstrap github://Graylog2/graylog-project.git
+  - cd graylog-project
+  - mvn -B -Dmaven.test.skip=true install
+after_success:
+  - mvn -B -Dmaven.test.skip=true -Dskip.web.build=true assembly:single
+
