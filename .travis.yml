@@ -12,7 +12,7 @@ before_script:
 script:
   - wget https://github.com/Graylog2/graylog-project-cli/releases/download/0.23.0/graylog-project.linux
   - chmod +x graylog-project.linux
-  - ./graylog-project.linux bootstrap github://Graylog2/graylog-project.git
+  - ./graylog-project.linux bootstrap https://github.com/Graylog2/graylog-project
   - cd graylog-project
   - mvn -B -Dmaven.test.skip=true install
 after_success:
