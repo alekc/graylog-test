@@ -14,6 +14,7 @@ script:
   - chmod +x graylog-project.linux
   - ./graylog-project.linux bootstrap https://github.com/Graylog2/graylog-project.git
   - cd graylog-project
+  - mvn compile
   - mvn -B -Dmaven.test.skip=true install
 after_success:
   - mvn -B -Dmaven.test.skip=true -Dskip.web.build=true assembly:single
